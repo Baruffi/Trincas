@@ -1,6 +1,6 @@
-package javaapplication1;
+package controllers;
 
-import static javaapplication1.GaussSolver.gaussSolver;
+import static controllers.GaussSolver.gaussSolver;
 
 
 
