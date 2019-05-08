@@ -10,7 +10,7 @@ package model;
  * @author Suporte
  */
 public class Material {
-    
+    //comentario
     private int id_material;
     private String nome;
     private double kcritico;
