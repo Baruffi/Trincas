@@ -11,7 +11,7 @@ public class dl_dN {
      //int[] N = new int[11], l1 = new int[11], l2 = new int[11];
        double[] N = {0.00,200.00,400.00,600.00,800.00,1000.00,1200.00,1350.00,1450.00,1550.00,1600.00};
        double[] L = {10.78,11.41,12.01,12.905,13.815,15.24,17.15,19.025,20.64,23.26,25.725};
-       int T = 11;
+       int T = L.length; // tamanho de L[]
        int cont = 0;
        int j = 0;
        double[] dLdN = new double[T];

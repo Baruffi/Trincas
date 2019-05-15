@@ -19,7 +19,7 @@ public class GaussSolver {
         for (int k = 0; k < A.length - 1; k++) {
             //procura o maior k-Ã©simo coeficiente em mÃ³dulo
             double max = Math.abs(A[k][k]);
-            int maxIndex = k;            
+            int maxIndex = k;
             for (int i = k + 1; i < A.length; i++) {
                 if (max < Math.abs(A[i][k])) {
                     max = Math.abs(A[i][k]);
