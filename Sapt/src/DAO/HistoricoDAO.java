@@ -60,7 +60,7 @@ public void update(Historico h){
         }
     }
     
-    // -------------------------------------------------------------------------
+    //=============================================================================
 
 public void delete(Historico h) {
         
@@ -86,18 +86,22 @@ public void delete(Historico h) {
         }
     }
 
-// -------------------------------------------------------------------------
+
 public void procurar (Historico h) {
 
 Connection con=Conexao.getConnection();
         PreparedStatement stmt =null;
-
+        ResultSet rs = null;
         try{
         stmt = con.prepareStatement("SELECT FROM historico WHERE id_historico = ?");
 
             stmt.setInt(1, h.getId_historico());
 
-                     
+             rs = stmt.executeQuery();
+            
+            while(rs.next()) {
+                
+            }        
             
             JOptionPane.showMessageDialog(null, "Encontrado com sucesso!");
         }

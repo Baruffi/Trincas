@@ -64,7 +64,7 @@ public void update(Adm a){
         }
     }
     
-    // -------------------------------------------------------------------------
+    //=============================================================================
 
 public void delete(Adm a) {
         
@@ -90,16 +90,23 @@ public void delete(Adm a) {
         }
     }
 
-// -------------------------------------------------------------------------
+
     public void procurar (Adm a) {
 
 Connection con=Conexao.getConnection();
         PreparedStatement stmt =null;
+        ResultSet rs = null;
 
         try{
-        stmt = con.prepareStatement("SELECT FROM usuario WHERE id_usuario = ?");
+        stmt = con.prepareStatement("SELECT * FROM usuario WHERE id_usuario = ?");
 
             stmt.setInt(1, a.getId_usuario());
+            
+            rs = stmt.executeQuery();
+            
+            while(rs.next()) {
+                
+            }
 
                      
             
@@ -111,7 +118,7 @@ Connection con=Conexao.getConnection();
         }
         finally
         {
-            Conexao.closeConnection(con, stmt);
+            Conexao.closeConnection(con, stmt, rs);
         }
 
 }

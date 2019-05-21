@@ -1,0 +1,22 @@
+
+create database saptBD;
+show databases;
+use  saptBD;
+create table Material (id_material int auto_increment primary  key not null,
+nome varchar(40)not null,kcritico double not null,c double not null,n double not null,espessura double not null
+); 
+
+create table usuario (id_usuario  int auto_increment primary key not null,
+login varchar(35)not null,senha varchar(10) not null,nome varchar(50) not null,
+formacao varchar(500));
+
+
+
+create table historico (id_historico int auto_increment primary key not null,
+data_historico date, id_usuario int, foreign key(id_usuario) references usuario(id_usuario) );
+
+usuarioinsert into usuario (login,senha,nome,formacao) values('teste','123','mateus','eng comp');
+
+
+
+
