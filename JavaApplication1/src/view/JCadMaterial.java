@@ -66,7 +66,6 @@ public class JCadMaterial extends javax.swing.JFrame {
         setTitle("Cadastro de Material");
         setMaximumSize(new java.awt.Dimension(960, 540));
         setMinimumSize(new java.awt.Dimension(960, 540));
-        setPreferredSize(new java.awt.Dimension(960, 540));
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 153));
         jPanel2.setMaximumSize(new java.awt.Dimension(960, 540));
@@ -175,7 +174,6 @@ public class JCadMaterial extends javax.swing.JFrame {
         });
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/Image/IcSelecEntrada.png"))); // NOI18N
-        jButton5.setActionCommand("");
 
         jTabMateriais.setAutoCreateRowSorter(true);
         jTabMateriais.setBackground(new java.awt.Color(204, 204, 204));

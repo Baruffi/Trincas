@@ -1,13 +1,14 @@
 
 package DAO;
 import Model.Adm;
+import connection.connectionsaptbd;
 import java.sql.*;
 import javax.swing.JOptionPane;
 
 public class AdmDAO {
  
 public void create (Adm a) {
-    Connection con = Conexao.getConnection();
+    Connection con = connectionsaptbd.getConnection();
     PreparedStatement stmt = null;
     
     try{
@@ -29,7 +30,7 @@ public void create (Adm a) {
         }
         finally
         {
-            Conexao.closeConnection(con,stmt);
+            connectionsaptbd.closeConnection(con,stmt);
         }
 
 }
@@ -38,7 +39,7 @@ public void create (Adm a) {
 
 public void update(Adm a){
         
-        Connection con = Conexao.getConnection();
+        Connection con = connectionsaptbd.getConnection();
         PreparedStatement stmt = null;
        
         try{
@@ -60,7 +61,7 @@ public void update(Adm a){
         }
         finally
         {
-            Conexao.closeConnection(con,stmt);
+            connectionsaptbd.closeConnection(con,stmt);
         }
     }
     
@@ -68,7 +69,7 @@ public void update(Adm a){
 
 public void delete(Adm a) {
         
-        Connection con=Conexao.getConnection();
+        Connection con=connectionsaptbd.getConnection();
         PreparedStatement stmt =null;
         
         try{
@@ -86,14 +87,14 @@ public void delete(Adm a) {
         }
         finally
         {
-            Conexao.closeConnection(con, stmt);
+            connectionsaptbd.closeConnection(con, stmt);
         }
     }
 
 
     public void procurar (Adm a) {
 
-Connection con=Conexao.getConnection();
+Connection con=connectionsaptbd.getConnection();
         PreparedStatement stmt =null;
         ResultSet rs = null;
 
@@ -118,7 +119,7 @@ Connection con=Conexao.getConnection();
         }
         finally
         {
-            Conexao.closeConnection(con, stmt, rs);
+            connectionsaptbd.closeConnection(con, stmt, rs);
         }
 
 }
