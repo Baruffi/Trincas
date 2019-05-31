@@ -70,9 +70,15 @@ public class JCadMaterial extends javax.swing.JFrame {
         jPanel3.setMinimumSize(new java.awt.Dimension(960, 76));
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/image/IcVoltar.png"))); // NOI18N
+        jButton3.setBorder(null);
         jButton3.setMaximumSize(new java.awt.Dimension(143, 141));
         jButton3.setMinimumSize(new java.awt.Dimension(143, 141));
         jButton3.setPreferredSize(new java.awt.Dimension(143, 141));
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -328,7 +334,9 @@ public class JCadMaterial extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        JMenu obj = new JMenu();
+        obj.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void txtNomeMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeMaterialActionPerformed
@@ -375,6 +383,12 @@ public class JCadMaterial extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        JMenu obj = new JMenu();
+        obj.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton3MouseClicked
 
     /**
      * @param args the command line arguments
