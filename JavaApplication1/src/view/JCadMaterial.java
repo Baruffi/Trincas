@@ -7,6 +7,8 @@ package view;
 
 import DAO.MaterialDAO;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import model.Material;
 /**
  *
@@ -19,6 +21,52 @@ public class JCadMaterial extends javax.swing.JFrame {
      */
     public JCadMaterial() {
         initComponents();
+        
+        DefaultTableModel modelo = (DefaultTableModel) jTabMateriais.getModel();
+        jTabMateriais.setRowSorter(new TableRowSorter(modelo));
+        readjTabMateriais();
+        
+    }
+    
+    public void readjTabMateriais() {
+
+        DefaultTableModel modelo = (DefaultTableModel) jTabMateriais.getModel();
+        MaterialDAO cdao = new MaterialDAO();
+        modelo.setNumRows(0);
+
+        for (Material m : cdao.read()) {
+            modelo.addRow(new Object[]{
+                m.getId(),
+                m.getNome(),
+                m.getKcritico(),
+                m.getC(),
+                m.getN(),
+                m.getEspessura()
+              
+            });
+
+        }
+
+    }
+    
+    public void readJTableParaNome(String NomePesquisaCliente) {
+        
+        DefaultTableModel modelo = (DefaultTableModel) jTabMateriais.getModel();
+        MaterialDAO cdao = new MaterialDAO();
+        modelo.setNumRows(0);
+
+        for (Material m : cdao.readParaClientes(NomePesquisaCliente)) {
+            modelo.addRow(new Object[]{
+                m.getId(),
+                m.getNome(),
+                m.getKcritico(),
+                m.getC(),
+                m.getN(),
+                m.getEspessura()
+            });
+
+        }
+
     }
 
     /**
@@ -30,6 +78,8 @@ public class JCadMaterial extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -53,6 +103,10 @@ public class JCadMaterial extends javax.swing.JFrame {
         jLC = new javax.swing.JLabel();
         jL32 = new javax.swing.JLabel();
         jLEspessura = new javax.swing.JLabel();
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane2.setViewportView(jTextArea1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(960, 540));
@@ -145,6 +199,11 @@ public class JCadMaterial extends javax.swing.JFrame {
         });
 
         txtKcritico.setBackground(new java.awt.Color(188, 188, 188));
+        txtKcritico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtKcriticoActionPerformed(evt);
+            }
+        });
 
         jLKc.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLKc.setForeground(new java.awt.Color(255, 255, 255));
@@ -198,6 +257,11 @@ public class JCadMaterial extends javax.swing.JFrame {
             }
         ));
         jTabMateriais.setGridColor(new java.awt.Color(0, 0, 0));
+        jTabMateriais.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTabMateriaisMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTabMateriais);
 
         jLN.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -235,9 +299,9 @@ public class JCadMaterial extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
+                        .addGap(73, 73, 73)
                         .addComponent(jLKc)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtKcritico, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLNM)
@@ -287,15 +351,14 @@ public class JCadMaterial extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jL32)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtKcritico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLKc))
+                    .addComponent(txtKcritico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(4, 4, 4)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLNM)
                             .addComponent(jLC)
-                            .addComponent(txtN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLKc))
                 .addGap(32, 32, 32)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -305,7 +368,7 @@ public class JCadMaterial extends javax.swing.JFrame {
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -352,7 +415,30 @@ public class JCadMaterial extends javax.swing.JFrame {
     }//GEN-LAST:event_txtEspessuraActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        if(jTabMateriais.getSelectedRow() != -1){
+
+            //if ((txtNomeProduto.getText().equals("") && (txtPrecoProduto.getText().equals("") && (txtQuantidadeProduto.getText().equals("") && (txtTipoProduto.getText().equals("")))))) {
+                //    JOptionPane.showMessageDialog(null, "Preencha todos os campos acima.");
+                //} else {
+
+                Material m = new Material();
+                MaterialDAO dao = new MaterialDAO();
+
+                m.setNome(txtNomeMaterial.getText());
+                m.setKcritico(Float.parseFloat(txtKcritico.getText()));
+                m.setC(Float.parseFloat(txtC.getText()));
+                m.setN (Float.parseFloat(txtN.getText()));
+                m.setEspessura(Float.parseFloat(txtEspessura.getText()));
+
+                dao.create(m);
+
+                txtNomeMaterial.setText("");
+                txtKcritico.setText("");
+                txtC.setText("");
+                txtN.setText("");
+                txtEspessura.setText("");
+                readjTabMateriais();
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -389,6 +475,22 @@ public class JCadMaterial extends javax.swing.JFrame {
         obj.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton3MouseClicked
+
+    private void txtKcriticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtKcriticoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtKcriticoActionPerformed
+
+    private void jTabMateriaisMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabMateriaisMouseClicked
+         if (jTabMateriais.getSelectedRow() != -1) {
+            txtNomeMaterial.setText(jTabMateriais.getValueAt(jTabMateriais.getSelectedRow(), 1).toString());
+            txtEspessura.setText(jTabMateriais.getValueAt(jTabMateriais.getSelectedRow(), 2).toString());
+            txtN.setText(jTabMateriais.getValueAt(jTabMateriais.getSelectedRow(), 3).toString());
+            txtC.setText(jTabMateriais.getValueAt(jTabMateriais.getSelectedRow(), 4).toString());
+            txtKcritico.setText(jTabMateriais.getValueAt(jTabMateriais.getSelectedRow(), 5).toString());
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione um produto.");
+        }
+    }//GEN-LAST:event_jTabMateriaisMouseClicked
 
     /**
      * @param args the command line arguments
@@ -443,7 +545,9 @@ public class JCadMaterial extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTabMateriais;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField txtC;
     private javax.swing.JTextField txtEspessura;
     private javax.swing.JTextField txtKcritico;
